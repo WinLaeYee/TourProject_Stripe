@@ -1,0 +1,59 @@
+.create-tour__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.create-tour__form{
+    padding: 20px;
+    width: 50%;
+    background: var(--secondary-color);
+    border: 1px solid gray;
+    position: relative;
+}
+
+.create-tour__form input, .create-tour__form textarea, .create-tour__form button{
+    width: 100%;
+    margin: 10px 0px;
+    padding: 8px;
+}
+
+.create-tour__container h2{
+    color: #fff;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.create-tour__form input{
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    color: var(--heading-color);
+}
+
+.create-tour__form input:focus{
+    outline: none;
+}
+
+.auth__btn {
+    background: var(--heading-color) !important;
+    width: 100%;
+    color: #fff !important;
+}
+
+.create-tour__form p {
+    font-size: .9rem;
+    color: #fff;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.create-tour__form p a {
+    color: var(--heading-color);
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: 500;
+}

@@ -1,0 +1,56 @@
+
+.Container {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #f8f8f8;
+  position: sticky;
+  top: 80px;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.table-class {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-header {
+  font-weight: bold !important;
+  background-color: orange !important;
+  color: #fff !important;
+  padding: 0.5rem !important;
+}
+
+.table-cell {
+  padding: 0.5rem !important;
+}
+
+.button-primary {
+  background-color: #007bff !important;
+  color: #fff  !important;
+  border: none  !important;
+  padding: 0.5rem 1rem  !important;
+  border-radius: 0.25rem  !important;
+  cursor: pointer  !important;
+}
+
+.button-info {
+  background-color: hwb(97 9% 28%)  !important;
+  color: #fff  !important;
+  border: none  !important;
+  padding: 0.5rem 1rem  !important;
+  border-radius: 0.25rem  !important;
+  cursor: pointer  !important;
+}
+
+.button-delete {
+  color: #ff0000 !important;
+  cursor: pointer !important;
+}
+

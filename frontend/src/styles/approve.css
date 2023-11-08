@@ -1,0 +1,9 @@
+.approve span i {
+    font-family: 4rem;
+    color: green;
+}
+
+.approve h1 {
+    font-size: 3.6rem;
+    font-family: var(--subtitle-font-name);
+}
