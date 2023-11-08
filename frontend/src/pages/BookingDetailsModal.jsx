@@ -23,7 +23,6 @@ const BookingDetailsModal = ({ booking, isOpen, toggle }) => {
       <ModalHeader toggle={toggle}>Booking Details</ModalHeader>
       <ModalBody>
         <p>Tour Name: {booking.tourName || 'N/A'}</p>
-        <p>Full Name: {booking.fullName || 'N/A'}</p>
         <p>City: {booking.city || 'N/A'}</p>
         <p>Guest Size: {booking.guestSize || 'N/A'}</p>
         <p>Total Amount: ${booking.totalAmount || 'N/A'}</p>
