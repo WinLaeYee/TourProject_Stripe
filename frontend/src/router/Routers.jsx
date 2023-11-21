@@ -19,7 +19,7 @@ import UserBookingList from '../pages/UserBookingList'
 import { AuthContext } from '../context/AuthContext.js'
 import WaitingApproval from '../pages/WaitingApproval'
 import CheckoutSuccess from '../pages/CheckoutSuccess'
-import Invoice from '../pages/Invoice'
+// import Invoice from '../pages/Invoice'
 
 const Routers = () => {
   const { user } = useContext(AuthContext)
@@ -38,7 +38,7 @@ const Routers = () => {
       <Route path="/updateTour/:id" element={<UpdateTour />} />
       <Route path="/deleteTour/:id" element={<DeleteTour />} />
       <Route path="/booking" element={<BookingList />} />
-      <Route path="/checkout-success/:id/:totalAmount" element={<CheckoutSuccess />} />
+      <Route path="/checkout-success/:id/:userId" element={<CheckoutSuccess />} />
       <Route path="/booking-details/:tourName" element={<ParentComponent />} />
       <Route
         path="/my-bookings"
@@ -51,7 +51,7 @@ const Routers = () => {
         }
       />
       <Route path="/waiting-approval" element={<WaitingApproval />} />
-      <Route path="/invoice" element={<Invoice />} />
+      {/* <Route path="/invoice" element={<Invoice />} /> */}
 
 
     </Routes>

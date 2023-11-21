@@ -8,15 +8,17 @@ const bookingSchema = new mongoose.Schema(
     },
     tourId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Tour"
+      ref: "Tour",
     },
-
     city: {
       type: String,
-      
     },
     userEmail: {
       type: String,
+    },
+    address: {
+      type: Object,
+      default: null,
     },
     tourName: {
       type: String,
@@ -34,23 +36,25 @@ const bookingSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    totalAmount:{
+    totalAmount: {
       type: Number,
     },
-    stripe_payment:{
+    stripe_payment: {
       type: Boolean,
       default: false,
     },
     status: {
       type: String,
-      enum: ['pending', 'approved','rejected'],
+      enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
     bookAt: {
       type: Date,
       required: true,
     },
-    
+    paidAt:{
+      type: Date,
+    }
   },
   { timestamps: true }
 );

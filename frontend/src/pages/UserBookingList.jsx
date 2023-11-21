@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import {
-  Container,
-  Table,
-  Button,
- 
-} from 'reactstrap'
+import { Container, Table, Button } from 'reactstrap'
 import { AuthContext } from '../context/AuthContext'
 import { AiFillDelete } from 'react-icons/ai'
 
@@ -27,8 +22,6 @@ const UserBookingList = ({ userId }) => {
     setSelectedBookingDetails(booking)
     setDetailsModalOpen(true)
   }
-
-
 
   const handleCancelBooking = async (bookingId) => {
     const shouldCancel = window.confirm(
@@ -84,51 +77,41 @@ const UserBookingList = ({ userId }) => {
     fetchUserBookings()
   }, [userId])
 
-  const handleCheckout = () =>{
-    
-   
-  }
+  const handleCheckout = () => {}
 
   return (
     <Container>
       <h2 className="mt-4 mb-4">My Own Booking Lists</h2>
       {userBookings.length > 0 ? (
-        <Table className='table-class' striped >
+        <Table className="table-class" striped>
           <thead>
             <tr>
-              <th className='table-header'>Tour Name</th>
-              <th className='table-header'>City</th>
-              <th className='table-header'>Phone No</th>
-              <th className='table-header'>Booking Date</th>
-              <th className='table-header'>Guest Size</th>
-              <th className='table-header'>Total Amount</th>
-              <th className='table-header'>Status</th>
-              <th className='table-header'>Actions</th>
-              
+              <th className="table-header">Tour Name</th>
+              <th className="table-header">City</th>
+              <th className="table-header">Phone No</th>
+              <th className="table-header">Booking Date</th>
+              <th className="table-header">Guest Size</th>
+              <th className="table-header">Total Amount</th>
+              <th className="table-header">Status</th>
+              <th className="table-header">Actions</th>
             </tr>
           </thead>
           <tbody>
             {userBookings.map((booking) => (
               <tr key={booking._id}>
-                <td className='table-cell'>{booking.tourName}</td>
-                <td className='table-cell'>{booking.city}</td>
-                <td className='table-cell'>{booking.phone}</td>
-                <td className='table-cell'>{formatDate(booking.bookAt)}</td>
-                <td className='table-cell'>{booking.guestSize}</td>
-                <td className='table-cell'>${booking.totalAmount}</td>
-                <td className='table-cell'>{booking.status}</td>
-                <td className='table-cell'>
+                <td className="table-cell">{booking.tourName}</td>
+                <td className="table-cell">{booking.city}</td>
+                <td className="table-cell">{booking.phone}</td>
+                <td className="table-cell">{formatDate(booking.bookAt)}</td>
+                <td className="table-cell">{booking.guestSize}</td>
+                <td className="table-cell">${booking.totalAmount}</td>
+                <td className="table-cell">{booking.status}</td>
+                <td className="table-cell">
                   {booking.status === 'approved' ? (
                     <div>
-                      {/* <Button
-                        className='button-primary'
-                        onClick={() => handleOpenPaymentModal(booking)} 
-                      >
-                       Pay Now 
-                      </Button> */}
-                      <PayButton booking={booking}/>
+                      <PayButton booking={booking} />
                       <Button
-                        className='button-info'
+                        className="button-info"
                         onClick={() => handleViewDetails(booking)}
                       >
                         View Details
@@ -136,7 +119,7 @@ const UserBookingList = ({ userId }) => {
                     </div>
                   ) : (
                     <AiFillDelete
-                    className='button-delete'
+                      className="button-delete"
                       onClick={() => handleCancelBooking(booking._id)}
                     >
                       Cancel
@@ -151,7 +134,6 @@ const UserBookingList = ({ userId }) => {
         'You have no bookings yet.'
       )}
 
-      
       {/* Booking Details Modal */}
       <BookingDetailsModal
         booking={selectedBookingDetails}

@@ -10,7 +10,6 @@ import authRoute from "./routes/auth.js";
 import reviewRoute from "./routes/reviews.js";
 import bookingRoute from "./routes/bookings.js";
 import stripeRoute from "./routes/stripe.js";
-import webhookRoute from './routes/webhook.js' ;
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -60,7 +59,7 @@ app.use("/api/user", userRoute);
 app.use("/api/review", reviewRoute);
 app.use("/api/booking", bookingRoute);
 app.use("/api/stripe", stripeRoute);
-app.use("/", webhookRoute);
+//app.use("/", webhookRoute);
 
 //for testing
 app.get("/", (req, res) => {

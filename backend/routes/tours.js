@@ -20,17 +20,21 @@ const router = express.Router();
 
 //create new tour
 
-
-router.post("/createTour", verifyAdmin, upload.single('file'), createTour);
+router.post("/createTour", verifyAdmin, upload.single("file"), createTour);
 
 //update tour
-router.put("/updateTour/:id", verifyAdmin,upload.single('photo'), updateTour);
+router.put("/updateTour/:id", verifyAdmin, upload.single("photo"), updateTour);
 
 //delete tour
-router.delete("/deleteTour/:id", verifyAdmin, upload.single('photo'), deleteTour);
+router.delete(
+  "/deleteTour/:id",
+  verifyAdmin,
+  upload.single("photo"),
+  deleteTour
+);
 
 //get single tour
-router.get("/:id",getSingleTour);
+router.get("/:id", getSingleTour);
 
 //get all tours
 router.get("/", getAllTour);

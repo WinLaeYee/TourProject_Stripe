@@ -4,7 +4,7 @@ import { sendMail } from '../utils/sendMail.js';
 //create new booking
 export const createBooking = async (req, res) => {
   //const newBooking = new Booking(req.body);
-  console.log("reqbody", req.body);
+  //console.log("reqbody", req.body);
   const newBooking = await Booking.create({
     userId: req.body.userId,
     userEmail: req.body.userEmail,

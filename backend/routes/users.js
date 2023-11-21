@@ -4,6 +4,7 @@ import {
   getSingleUser,
   updateUser,
   getAllUser,
+  confirmedBooking,
 } from "../controllers/userController.js";
 const router = express.Router();
 
@@ -20,5 +21,7 @@ router.get("/:id", verifyUser, getSingleUser);
 
 //get all Users
 router.get("/", verifyAdmin, getAllUser);
+
+router.get("/confirmed-booking/:id/:userId", confirmedBooking);
 
 export default router;

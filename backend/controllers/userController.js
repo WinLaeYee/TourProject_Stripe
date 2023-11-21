@@ -1,120 +1,129 @@
-import User from '../models/User.js';
-
-
+import Booking from "../models/Booking.js";
+import User from "../models/User.js";
 
 //create User
-export const createUser = async (req, res) =>{
-  const { username, email, password, photo, role} = req.body;
-  
+export const createUser = async (req, res) => {
+  const { username, email, password, photo, role } = req.body;
+
   const newUser = new User({
     username,
     email,
     password,
     photo,
-    role
+    role,
   });
 
-  try{
+  try {
     const savedUser = await newUser.save();
     return res.status(201).json({
-      success:true,
-      message:"Successfully created",
-      data:savedUser
-  })
-}
-  catch(err){
+      success: true,
+      message: "Successfully created",
+      data: savedUser,
+    });
+  } catch (err) {
     console.log(err);
     res.status(500).json({
       success: false,
-      message:'Failed to create user'
-    })
+      message: "Failed to create user",
+    });
   }
-}
+};
 // update User
-export const updateUser = async(req, res)=>{
+export const updateUser = async (req, res) => {
   const id = req.params.id;
-  try{
-    const updatedUser = await User.findByIdAndUpdate(id, {
-      $set: req.body
-    },{new: true})
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
 
     res.status(200).json({
-      success:true,
-      message:"Successfully updated",
-      data:updatedUser,
-    })
-
-  }catch(err){
+      success: true,
+      message: "Successfully updated",
+      data: updatedUser,
+    });
+  } catch (err) {
     res.status(500).json({
-      success:false,
-      message:"Failed to update user"
-  })
+      success: false,
+      message: "Failed to update user",
+    });
   }
 };
 
-
 // delete User
-export const deleteUser = async(req, res)=>{
-  
-    const id = req.params.id;
-  try{
+export const deleteUser = async (req, res) => {
+  const id = req.params.id;
+  try {
     await User.findByIdAndDelete(id);
 
     res.status(200).json({
-      success:true,
-      message:"Successfully deleted",
-    })
-
-  }catch(err){
+      success: true,
+      message: "Successfully deleted",
+    });
+  } catch (err) {
     res.status(500).json({
-      success:false,
-      message:"Failed to delete user"
-  })
+      success: false,
+      message: "Failed to delete user",
+    });
   }
 };
 
-
 // getSingle User
-export const getSingleUser = async(req, res)=>{
+export const getSingleUser = async (req, res) => {
   const id = req.params.id;
-  try{
+  try {
     const user = await User.findById(id);
 
     res.status(200).json({
-      success:true,
-      message:"Successfully showed",
+      success: true,
+      message: "Successfully showed",
       data: user,
-    })
-
-  }catch(err){
+    });
+  } catch (err) {
     res.status(404).json({
-      success:false,
-      message:"User Not found"
-  })
+      success: false,
+      message: "User Not found",
+    });
   }
 };
 
-
-
 // getAll User
-export const getAllUser = async(req, res)=>{
-
-
-
-  try{
-    const users = await User.find({})
-    
-
+export const getAllUser = async (req, res) => {
+  try {
+    const users = await User.find({});
     res.status(200).json({
-      success:true,
-      message:"Successfully all datas showed",
+      success: true,
+      message: "Successfully all datas showed",
       data: users,
-    })
-
-  }catch(err){
+    });
+  } catch (err) {
     res.status(404).json({
-      success:false,
-      message:"Not found"
-  })
+      success: false,
+      message: "Not found",
+    });
+  }
+};
+
+export const confirmedBooking = async (req, res) => {
+  const { id, userId } = req.params;
+  try {
+    const booking = await Booking.findById({
+      _id: id,
+      userId,
+      stripe_payment: true,
+    });
+    res.status(200).json({
+      success: true,
+      message: "Successful",
+      booking,
+    });
+  } catch (err) {
+    res.status(404).json({
+      success: false,
+      message: "User Not found",
+    });
   }
 };

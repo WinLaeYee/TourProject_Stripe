@@ -62,7 +62,7 @@ export const login = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    console.log("token is" , token)
+    //console.log("token is" , token)
 
     //set token in the browser cookie and send the response to the client
     res.cookie('accessToken', token, {
