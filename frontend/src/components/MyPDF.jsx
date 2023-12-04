@@ -1,64 +1,4 @@
-/* import React from 'react'
-import {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
-  PDFDownloadLink,
-} from '@react-pdf/renderer'
 
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4',
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-  },
-})
-
-// Create Document Component
-export const MyPDF = ({data}) => {
-  console.log('objects invoiceData', data)
-
-  return (
-    <>
-      <PDFDownloadLink
-        document={
-          <Document>
-            <Page size="A4" style={styles.page}>
-              <View style={styles.section}>
-                <Text>{`Invoice: ${data?.booking?._id}`}</Text>
-              </View>
-              <View style={styles.section}>
-              
-                <Text>{`City: ${data?.booking?.city}`}</Text>
-                <Text>{`User Email: ${data?.booking?.userEmail}`}</Text>
-                <Text>{`Address: ${data?.booking?.address?.line1}, ${data?.booking?.address?.line2}, ${data?.booking?.address?.city}`}</Text>
-              </View>
-            </Page>
-          </Document>
-        }
-        fileName="invoice.pdf"
-      >
-        {({ blob, url, loading, error }) =>
-          loading ? (
-            'Loading document...'
-          ) : (
-            <button className="btn bg-white btn-light mx-1px text-95">
-              Export
-            </button>
-          )
-        }
-      </PDFDownloadLink>
-    </>
-  )
-}
- */
 
 import React from 'react'
 import {
@@ -70,6 +10,9 @@ import {
   PDFDownloadLink,
   Image,
 } from '@react-pdf/renderer'
+import { calculateTax } from '../utils/calculateTax.js';
+
+
 
 
 const styles = StyleSheet.create({
@@ -88,28 +31,23 @@ const styles = StyleSheet.create({
     
   },
 
-  companyLogo: {
-    width: 80,
-    height: 80,
-    marginRight: 20,
-    borderRadius: 5,
-  },
+
 
   sectionTitle: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#333',
   },
 
   sectionSubtitle: {
-    fontSize: 24,
+    fontSize: 20,
     marginBottom: 10,
     color: '#555',
   },
 
   label: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#333',
     gap: 4,
@@ -122,11 +60,17 @@ const styles = StyleSheet.create({
   },
 
   totalAmount: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#008000',
     marginTop: 20,
     marginBottom: 20,
+    marginLeft: 40,
+  },
+
+  thankYouText: {
+    fontSize: 22,
+    marginBottom: 20, // Adjusted marginBottom for spacing
     marginLeft: 40,
   },
 
@@ -143,7 +87,10 @@ const styles = StyleSheet.create({
 })
 
 export const MyPDF = ({ data }) => {
-  console.log('objects invoiceData', data)
+  console.log('objects invoiceData', data);
+
+  const taxAmount = calculateTax(data?.booking?.totalAmount);
+  const totalAmountWithTax = data?.booking?.totalAmount + taxAmount;
 
   return (
     <>
@@ -152,7 +99,7 @@ export const MyPDF = ({ data }) => {
           <Document>
             <Page size="A4" style={styles.page}>
               <View style={styles.header}>
-                <Image style={styles.companyLogo} src="/path/to/logo.png" />
+               
                 <Text
                   style={styles.sectionTitle}
                 >{`Invoice: ${data?.booking?._id}`}</Text>
@@ -180,13 +127,17 @@ export const MyPDF = ({ data }) => {
                 <Text style={styles.value}>{data?.booking?.guestSize}</Text>
                 <Text style={styles.label}>Total Amount:</Text>
                 <Text style={styles.value}>${data?.booking?.totalAmount}</Text>
+                <Text style={styles.label}>Tax:</Text>
+                <Text style={styles.value}>${taxAmount}</Text>
+                
+
               </View>
 
-              <View style={{ ...styles.totalAmount, marginLeft: 40 }}>
-                <Text>Total Amount: ${data?.booking?.totalAmount}</Text>
-              </View>
+              <Text style={styles.totalAmount}>
+                  Total Amount (including Tax): ${totalAmountWithTax}
+                </Text>
 
-              <View style={{ ...styles.viewContainer, marginLeft: 40 }}>
+              <View style={styles.thankYouText}>
               <Text style={styles.value}>Thank you for your booking with our TravelWorld!!!</Text>
               </View>
 

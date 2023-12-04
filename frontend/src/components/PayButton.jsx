@@ -7,6 +7,10 @@ import { useEffect, useState } from 'react'
 const PayButton = ({ booking }) => {
   console.log('booking',booking)
 
+  if (booking.stripe_payment) {
+    return <div>Payment Completed</div>;
+  }
+
   // const [bookingId, setBookingId] = useState([])
 
   // useEffect(() => {

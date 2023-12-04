@@ -6,11 +6,12 @@ import { AiFillDelete } from 'react-icons/ai'
 import BookingDetailsModal from './BookingDetailsModal'
 import './UserBookingList.css'
 import PayButton from '../components/PayButton'
+import { formatDate } from '../utils/formatDate.js'
 
-function formatDate(dateString) {
+/* function formatDate(dateString) {
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
   return new Date(dateString).toLocaleDateString(undefined, options)
-}
+} */
 
 const UserBookingList = ({ userId }) => {
   const { user } = useContext(AuthContext)
@@ -93,7 +94,8 @@ const UserBookingList = ({ userId }) => {
               <th className="table-header">Guest Size</th>
               <th className="table-header">Total Amount</th>
               <th className="table-header">Status</th>
-              <th className="table-header">Actions</th>
+              <th className="table-header">Payment Status</th>
+              <th className="table-header">Details</th>
             </tr>
           </thead>
           <tbody>
@@ -106,18 +108,22 @@ const UserBookingList = ({ userId }) => {
                 <td className="table-cell">{booking.guestSize}</td>
                 <td className="table-cell">${booking.totalAmount}</td>
                 <td className="table-cell">{booking.status}</td>
+              
+                 <td className="table-cell">
+                  {booking.status === 'approved' && (
+                    <PayButton booking={booking} onClick={handleCheckout} />
+                  )}
+                </td>
                 <td className="table-cell">
-                  {booking.status === 'approved' ? (
-                    <div>
-                      <PayButton booking={booking} />
-                      <Button
-                        className="button-info"
-                        onClick={() => handleViewDetails(booking)}
-                      >
-                        View Details
-                      </Button>
-                    </div>
-                  ) : (
+                  <Button
+                    className="button-info"
+                    onClick={() => handleViewDetails(booking)}
+                  >
+                    View Details
+                  </Button>
+                </td>
+                <td className="table-cell">
+                  {booking.status !== 'approved' && (
                     <AiFillDelete
                       className="button-delete"
                       onClick={() => handleCancelBooking(booking._id)}

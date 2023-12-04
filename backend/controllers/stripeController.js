@@ -1,6 +1,8 @@
 import { config } from "dotenv";
 import { Stripe } from "stripe";
 import Booking from "../models/Booking.js";
+import { createTemplate } from "./template.js";
+import { calculateTax} from '../utils/calculateTax.js'
 
 config();
 
@@ -17,6 +19,10 @@ export const stripeAccess = async (req, res) => {
     },
   });
   try {
+
+    const taxAmount = calculateTax(booking.totalAmount);
+
+
     const line_items = [
       {
         price_data: {
@@ -25,11 +31,22 @@ export const stripeAccess = async (req, res) => {
             name: booking.tourName,
             description: booking.desc,
             metadata: {
-              userId: booking.userId, // Add userId to metadata
-              phone: booking.phone, // Add phone to metadata
+              userId: booking.userId, 
+              phone: booking.phone,
             },
           },
           unit_amount: booking.totalAmount * 100,
+        },
+        quantity: 1,
+      },
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "Tax",
+            description: "Sales Tax",
+          },
+          unit_amount: taxAmount * 100,
         },
         quantity: 1,
       },
@@ -52,8 +69,16 @@ export const stripeAccess = async (req, res) => {
     res.send({ url: session.url });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+/* const calculateTax = (totalAmount) => {
+ 
+  const taxRate = 0.1; // 10%
+  const taxAmount = totalAmount * taxRate;
+  return taxAmount;
+}; */
 
 export const handleWebhookEvent = async (req, res) => {
   const sig = req.headers["stripe-signature"];
@@ -87,44 +112,32 @@ export const handleWebhookEvent = async (req, res) => {
     console.log("webhook data", data);
     const bookingId = data.client_reference_id;
     const customerDetail = data.customer_details.address;
-    /* const result = await Booking.find({
-      _id: bookingId,
-      stripe_payment: false,
-    });
-    if (!result) return res.status(404).json({ message: "Not Found" });
-    await Booking.updateOne({
-      $set: {
-        stripe_payment: true,
-        address: customerDetail,
-        paidAt: new Date(),
-      },
-    });
-  } */
+   
 
-  
-  try {
-    // Find the booking using findById instead of find
-    const result = await Booking.findById(bookingId);
+    try {
+     
+      const result = await Booking.findById(bookingId);
 
-    // Check if the booking is found and stripe_payment is false
-    if (result && !result.stripe_payment) {
-      // Update the booking with the required information
-      await Booking.findByIdAndUpdate(bookingId, {
-        $set: {
-          stripe_payment: true,
-          address: customerDetail,
-          paidAt: new Date(),
-        },
-      });
-    } else {
-      console.log("Booking not found or already paid.");
+      
+      if (result && !result.stripe_payment) {
+       
+        await Booking.findByIdAndUpdate(bookingId, {
+          $set: {
+            stripe_payment: true,
+            address: customerDetail,
+            paidAt: new Date(),
+          },
+        });
+      } else {
+        console.log("Something went wrong, try again.");
+      }
+      await createTemplate(bookingId);
+    } catch (error) {
+      console.error("Error updating booking:", error);
+      return res.status(500).json({ message: "Internal Server Error" });
     }
-  } catch (error) {
-    console.error("Error updating booking:", error);
-    return res.status(500).json({ message: "Internal Server Error" });
   }
-}
 
-  // Return a 200 response to acknowledge receipt of the event
+ 
   res.send().end();
 };

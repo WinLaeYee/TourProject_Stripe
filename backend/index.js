@@ -13,6 +13,7 @@ import stripeRoute from "./routes/stripe.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
+// import expressLayouts from 'express-ejs-layouts';
 
 const app = express();
 
@@ -36,6 +37,8 @@ app.use(cors(corsOptions));
 app.use(express.static("public"));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// app.use(expressLayouts);
 
 dotenv.config();
 //database connection
