@@ -1,31 +1,31 @@
 0 info it worked if it ends with ok
 1 verbose cli [
 1 verbose cli   'C:\\Program Files\\nodejs\\node.exe',
-1 verbose cli   'C:\\Users\\Administrator\\Desktop\\TourProject(Approve and Email)\\backend\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'C:\\Users\\Administrator\\Desktop\\TourProject(Approve Email Notification Stripe Payment )\\backend\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'run',
-1 verbose cli   'client'
+1 verbose cli   'start-dev'
 1 verbose cli ]
 2 info using npm@2.15.12
 3 info using node@v20.0.0
-4 verbose stack Error: Cannot find module 'C:\Users\Administrator\Desktop\TourProject(Approve and Email)\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\lib\util.js'. Please verify that the package.json has a valid "main" entry
+4 verbose stack Error: Cannot find module 'C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\lib\util.js'. Please verify that the package.json has a valid "main" entry
 4 verbose stack     at tryPackage (node:internal/modules/cjs/loader:438:19)
 4 verbose stack     at Module._findPath (node:internal/modules/cjs/loader:687:18)
 4 verbose stack     at Module._resolveFilename (node:internal/modules/cjs/loader:1068:27)
 4 verbose stack     at Module._load (node:internal/modules/cjs/loader:928:27)
 4 verbose stack     at Module.require (node:internal/modules/cjs/loader:1149:19)
 4 verbose stack     at require (node:internal/modules/helpers:121:18)
-4 verbose stack     at Object.<anonymous> (C:\Users\Administrator\Desktop\TourProject(Approve and Email)\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\lib\_stream_duplex.js:25:12)
+4 verbose stack     at Object.<anonymous> (C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\lib\_stream_duplex.js:25:12)
 4 verbose stack     at Module._compile (node:internal/modules/cjs/loader:1267:14)
 4 verbose stack     at Module._extensions..js (node:internal/modules/cjs/loader:1321:10)
 4 verbose stack     at Module.load (node:internal/modules/cjs/loader:1125:32)
-5 verbose cwd C:\Users\Administrator\Desktop\TourProject(Approve and Email)\backend
+5 verbose cwd C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend
 6 error Windows_NT 10.0.22621
-7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\Administrator\\Desktop\\TourProject(Approve and Email)\\backend\\node_modules\\npm\\bin\\npm-cli.js" "run" "client"
+7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\Administrator\\Desktop\\TourProject(Approve Email Notification Stripe Payment )\\backend\\node_modules\\npm\\bin\\npm-cli.js" "run" "start-dev"
 8 error node v20.0.0
 9 error npm  v2.15.12
-10 error path C:\Users\Administrator\Desktop\TourProject(Approve and Email)\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\package.json
+10 error path C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\package.json
 11 error code MODULE_NOT_FOUND
-12 error Cannot find module 'C:\Users\Administrator\Desktop\TourProject(Approve and Email)\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\lib\util.js'. Please verify that the package.json has a valid "main" entry
+12 error Cannot find module 'C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\lib\util.js'. Please verify that the package.json has a valid "main" entry
 13 error If you need help, you may report this error at:
 13 error     <https://github.com/npm/npm/issues>
 14 verbose exit [ 1, true ]

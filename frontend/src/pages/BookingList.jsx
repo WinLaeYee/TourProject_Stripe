@@ -40,8 +40,6 @@ const BookingList = () => {
   }, []);
 
 
-
-  // Calculate bookingCounts
   const bookingCounts = bookings.reduce((counts, booking) => {
     counts[booking.tourName] = (counts[booking.tourName] || 0) + 1;
     return counts;
@@ -56,19 +54,31 @@ const BookingList = () => {
         <thead>
           <tr>
             <th className='table-header'>Tour Name</th>
+            <th className='table-header'>Country</th>
             <th className='table-header'>Total No. of Bookings</th>
           </tr>
         </thead>
         <tbody>
-          {Object.entries(bookingCounts).map(([tourName, totalBookings]) => (
-            <tr key={tourName}>
-              
-              <td className='table-cell'>
-              <Link  to={`/booking-details/${tourName}`} className="btn btn-link tour-btn" style={{ textDecoration: 'none', fontWeight:'bold' }}>{tourName}</Link>
-              </td>
-              <td className='table-cell'>{totalBookings}</td>
-            </tr>
-          ))}
+        {Object.entries(bookingCounts).map(([tourName, totalBookings]) => {
+              const bookingWithCity = bookings.find((booking) => booking.tourName === tourName);
+              const city = bookingWithCity ? bookingWithCity.city : 'N/A';
+
+              return (
+                <tr key={tourName}>
+                  <td className="table-cell">
+                    <Link
+                      to={`/booking-details/${tourName}`}
+                      className="btn btn-link tour-btn"
+                      style={{ textDecoration: 'none', fontWeight: 'bold' }}
+                    >
+                      {tourName}
+                    </Link>
+                  </td>
+                  <td className="table-cell">{city}</td>
+                  <td className="table-cell">{totalBookings}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </Table>
         ): "User can't get all tour bookings information!"

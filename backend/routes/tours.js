@@ -8,6 +8,8 @@ import {
   getTourBySearch,
   getFeaturedTour,
   getTourCount,
+  getAllToursNoPagination
+ 
 } from "../controllers/tourController.js";
 
 import upload from "../utils/multer.js";
@@ -29,7 +31,6 @@ router.put("/updateTour/:id", verifyAdmin, upload.single("photo"), updateTour);
 router.delete(
   "/deleteTour/:id",
   verifyAdmin,
-  upload.single("photo"),
   deleteTour
 );
 
@@ -38,6 +39,8 @@ router.get("/:id", getSingleTour);
 
 //get all tours
 router.get("/", getAllTour);
+
+router.get('/all', getAllToursNoPagination);
 
 //get tour by search
 router.get("/search/getTourBySearch", getTourBySearch);

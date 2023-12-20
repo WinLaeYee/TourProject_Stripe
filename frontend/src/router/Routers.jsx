@@ -19,6 +19,8 @@ import UserBookingList from '../pages/UserBookingList'
 import { AuthContext } from '../context/AuthContext.js'
 import WaitingApproval from '../pages/WaitingApproval'
 import CheckoutSuccess from '../pages/CheckoutSuccess'
+import AdminDashboard from '../pages/AdminDashboard'
+import EditTourComponent from '../components/EditTourComponent'
 // import Invoice from '../pages/Invoice'
 
 const Routers = () => {
@@ -52,6 +54,8 @@ const Routers = () => {
       />
       <Route path="/waiting-approval" element={<WaitingApproval />} />
       {/* <Route path="/invoice" element={<Invoice />} /> */}
+      <Route path="/dashboard" element={<AdminDashboard />} />
+      <Route path="/edit-tour/:id" exact element={<EditTourComponent/>} /> 
 
 
     </Routes>

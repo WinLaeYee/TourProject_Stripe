@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState, useEffect } from 'react';
+/* import React, { useContext, useRef, useState, useEffect } from 'react';
 import { Container, Row, Button } from 'reactstrap';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
@@ -14,10 +14,7 @@ const nav__links = [
     path: '/tours',
     display: 'Tours',
   },
- /*  {
-    path: '/booking',
-    display: 'Booked',
-  }, */
+
 ];
 
 const Header = () => {
@@ -77,7 +74,7 @@ const Header = () => {
                     </li>
                   ))}
 
-                  {/* Conditional rendering based on user role */}
+                  
                   {user && user.role === 'admin' && (
                     <>
                       <li className="nav__item">
@@ -124,6 +121,97 @@ const Header = () => {
           </Row>
         </Container>
       </header>
+    </>
+  );
+};
+
+export default Header;
+ */
+
+
+
+import React, { useContext, useState } from 'react';
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { AuthContext } from '../../context/AuthContext';
+import logo from '../../assets/images/logo.png';
+import BookingList from '../../pages/BookingList';
+import './Header.css';
+
+const Header = () => {
+  const { user, dispatch } = useContext(AuthContext);
+  const [showBookingList, setShowBookingList] = useState(false);
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    setShowBookingList(false); // Hide BookingList on logout
+  };
+
+  const handleAdminLogin = () => {
+    setShowBookingList(true); // Show BookingList when admin logs in
+  };
+
+  return (
+    <>
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <LinkContainer to="/">
+            <Navbar.Brand>
+              <img src={logo} alt="" />
+            </Navbar.Brand>
+          </LinkContainer>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              {user ? (
+                <>
+                  <LinkContainer to="/home">
+                    <Nav.Link>Home</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/tours">
+                    <Nav.Link>Tours</Nav.Link>
+                  </LinkContainer>
+                  <NavDropdown title={`${user.username}`} id="basic-nav-dropdown">
+                    {user.role === 'admin' && (
+                      <>
+                        <LinkContainer to="/dashboard">
+                          <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/createTour">
+                          <NavDropdown.Item>Create Tour</NavDropdown.Item>
+                        </LinkContainer>
+                        <LinkContainer to="/booking">
+                          <NavDropdown.Item onClick={handleAdminLogin}>
+                            All Booking Lists
+                          </NavDropdown.Item>
+                        </LinkContainer>
+                      </>
+                    )}
+
+                    <LinkContainer to="/my-bookings">
+                      <NavDropdown.Item>My Bookings</NavDropdown.Item>
+                    </LinkContainer>
+
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                  </NavDropdown>
+                </>
+              ) : (
+                <>
+                  <LinkContainer to="/login">
+                    <Nav.Link>Login</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/register">
+                    <Nav.Link>Register</Nav.Link>
+                  </LinkContainer>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      {/* {showBookingList && <BookingList />} */}
     </>
   );
 };

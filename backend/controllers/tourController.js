@@ -250,6 +250,25 @@ export const getTourCount = async (req, res) => {
   }
 };
 
+
+// Get all tours without pagination
+export const getAllToursNoPagination = async (req, res) => {
+  try {
+    const tours = await Tour.find().populate('reviews');
+    res.status(200).json({
+      success: true,
+      count: tours.length,
+      message: 'Successfully fetched all tours',
+      data: tours,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch tours',
+    });
+  }
+};
+
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return "0 Bytes";
@@ -261,3 +280,5 @@ const fileSizeFormatter = (bytes, decimal) => {
     parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + "" + sizes[index]
   );
 };
+
+
