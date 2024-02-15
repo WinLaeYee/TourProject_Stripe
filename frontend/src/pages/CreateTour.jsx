@@ -16,6 +16,7 @@ const CreateTour = () => {
   const [desc, setDesc] = useState()
   const [price, setPrice] = useState()
   const [maxGroupSize, setMaxGroupSize] = useState()
+  const [featured, setFeatured] = useState(false);
  
 
   const navigate = useNavigate()
@@ -33,6 +34,7 @@ const CreateTour = () => {
     formData.append('desc', desc)
     formData.append('price', price)
     formData.append('maxGroupSize', maxGroupSize)
+    formData.append('featured', featured)
    
     try {
       const res = await fetch(`${BASE_URL}/tours/createTour`, {
@@ -109,7 +111,7 @@ const CreateTour = () => {
                       onChange={(e) => setMaxGroupSize(e.target.value)}
                     />
                     <label htmlFor="featured">Featured</label>
-                    <input type="checkbox"  />
+                    <input type="checkbox" checked={featured} onChange={()=> setFeatured(!featured)}  />
                     <button
                       className="btn secondary__btn auth__btn"
                       type="submit"

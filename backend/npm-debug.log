@@ -3,29 +3,41 @@
 1 verbose cli   'C:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'C:\\Users\\Administrator\\Desktop\\TourProject(Approve Email Notification Stripe Payment )\\backend\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'run',
-1 verbose cli   'start-dev'
+1 verbose cli   'client'
 1 verbose cli ]
 2 info using npm@2.15.12
 3 info using node@v20.0.0
-4 verbose stack Error: Cannot find module 'C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\lib\util.js'. Please verify that the package.json has a valid "main" entry
-4 verbose stack     at tryPackage (node:internal/modules/cjs/loader:438:19)
-4 verbose stack     at Module._findPath (node:internal/modules/cjs/loader:687:18)
-4 verbose stack     at Module._resolveFilename (node:internal/modules/cjs/loader:1068:27)
-4 verbose stack     at Module._load (node:internal/modules/cjs/loader:928:27)
-4 verbose stack     at Module.require (node:internal/modules/cjs/loader:1149:19)
-4 verbose stack     at require (node:internal/modules/helpers:121:18)
-4 verbose stack     at Object.<anonymous> (C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\lib\_stream_duplex.js:25:12)
-4 verbose stack     at Module._compile (node:internal/modules/cjs/loader:1267:14)
-4 verbose stack     at Module._extensions..js (node:internal/modules/cjs/loader:1321:10)
-4 verbose stack     at Module.load (node:internal/modules/cjs/loader:1125:32)
-5 verbose cwd C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend
-6 error Windows_NT 10.0.22621
-7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\Administrator\\Desktop\\TourProject(Approve Email Notification Stripe Payment )\\backend\\node_modules\\npm\\bin\\npm-cli.js" "run" "start-dev"
-8 error node v20.0.0
-9 error npm  v2.15.12
-10 error path C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\package.json
-11 error code MODULE_NOT_FOUND
-12 error Cannot find module 'C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\node_modules\request\node_modules\bl\node_modules\readable-stream\node_modules\core-util-is\lib\util.js'. Please verify that the package.json has a valid "main" entry
-13 error If you need help, you may report this error at:
-13 error     <https://github.com/npm/npm/issues>
-14 verbose exit [ 1, true ]
+4 verbose run-script [ 'preclient', 'client', 'postclient' ]
+5 info preclient backend@1.0.0
+6 info client backend@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info backend@1.0.0 Failed to exec client script
+9 verbose stack Error: backend@1.0.0 client: `npm start --prefix ../frontend`
+9 verbose stack Exit status 3221225786
+9 verbose stack     at EventEmitter.<anonymous> (C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\lib\utils\lifecycle.js:217:16)
+9 verbose stack     at EventEmitter.emit (node:events:511:28)
+9 verbose stack     at ChildProcess.<anonymous> (C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend\node_modules\npm\lib\utils\spawn.js:24:14)
+9 verbose stack     at ChildProcess.emit (node:events:511:28)
+9 verbose stack     at maybeClose (node:internal/child_process:1098:16)
+9 verbose stack     at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+10 verbose pkgid backend@1.0.0
+11 verbose cwd C:\Users\Administrator\Desktop\TourProject(Approve Email Notification Stripe Payment )\backend
+12 error Windows_NT 10.0.22621
+13 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\Administrator\\Desktop\\TourProject(Approve Email Notification Stripe Payment )\\backend\\node_modules\\npm\\bin\\npm-cli.js" "run" "client"
+14 error node v20.0.0
+15 error npm  v2.15.12
+16 error code ELIFECYCLE
+17 error backend@1.0.0 client: `npm start --prefix ../frontend`
+17 error Exit status 3221225786
+18 error Failed at the backend@1.0.0 client script 'npm start --prefix ../frontend'.
+18 error This is most likely a problem with the backend package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     npm start --prefix ../frontend
+18 error You can get information on how to open an issue for this project with:
+18 error     npm bugs backend
+18 error Or if that isn't available, you can get their info via:
+18 error
+18 error     npm owner ls backend
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]

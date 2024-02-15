@@ -4,7 +4,7 @@ import Tour from "../models/Tour.js";
 
 export const createTour = async (req, res) => {
   try {
-    const { title, city, address, distance, desc, price, maxGroupSize } =
+    const { title, city, address, distance, desc, price, maxGroupSize, featured } =
       req.body;
 
     const file = {
@@ -25,6 +25,7 @@ export const createTour = async (req, res) => {
       price,
       maxGroupSize,
       photo: file,
+      featured: featured || false
     });
     console.log('new tour:', newTour)
 
@@ -51,8 +52,8 @@ export const updateTour = async (req, res) => {
   const id = req.params.id;
   const photo = req.file;
 
-  console.log("file lenght", photo?.filename);
-  console.log("id is", id)
+  //console.log("file lenght", photo?.filename);
+  //console.log("id is", id)
 
   const fileData = {
     fileName: photo?.originalname,
@@ -116,7 +117,7 @@ export const updateTour = async (req, res) => {
 export const deleteTour = async (req, res) => {
   const id = req.params.id;
 
-  console.log(" delete id is", id);
+  //console.log(" delete id is", id);
 
   try {
     const deletedTour = await Tour.findByIdAndDelete(id);
@@ -163,7 +164,7 @@ export const getSingleTour = async (req, res) => {
 };
 
 // getAll tour
-export const getAllTour = async (req, res) => {
+/* export const getAllTour = async (req, res) => {
   //for pagination
   const page = parseInt(req.query.page);
 
@@ -184,6 +185,38 @@ export const getAllTour = async (req, res) => {
     });
 
     console.log("tours data is", tours);
+  } catch (err) {
+    res.status(404).json({
+      success: false,
+      message: "Not found",
+    });
+  }
+}; */
+
+
+export const getAllTour = async (req, res) => {
+  //for pagination
+  const page = parseInt(req.query.page);
+  const toursPerPage = 8;
+
+  //console.log("page is", page);
+
+  try {
+    const totalTours = await Tour.countDocuments();
+    const tours = await Tour.find({})
+      .populate("reviews")
+      .skip((page - 1) * toursPerPage)
+      .limit(toursPerPage);
+
+    res.status(200).json({
+      success: true,
+      count: tours.length,
+      totalTours,
+      message: "Successfully all datas showed",
+      data: tours,
+    });
+
+    //console.log("tours data is", tours);
   } catch (err) {
     res.status(404).json({
       success: false,

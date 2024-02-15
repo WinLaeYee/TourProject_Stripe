@@ -46,7 +46,7 @@ const tourSchema = new mongoose.Schema(
       default: false,
     },
     bookings:[
-      { type: mongoose.Schema.Types.ObjectId,
+      { type: mongoose.Types.ObjectId,
       ref: "Booking"
   }
   ]

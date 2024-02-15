@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 import calculateAvgRating from '../utils/avgRating'
 
 import './tour-card.css'
-// import tours from '../assets/data/tours'
+
 import { AuthContext } from '../context/AuthContext'
 
 const TourCard = ({ tour }) => {
   const { _id, title, photo, city, price, featured, reviews } = tour
-  console.log('photo', photo[0].filePath)
+  //console.log('photo', photo[0].filePath)
   const { user } = useContext(AuthContext)
-  console.log('user', user);
+  //console.log('user', user);
 
   const { totalRating, avgRating } = calculateAvgRating(reviews)
 

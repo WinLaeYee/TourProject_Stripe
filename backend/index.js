@@ -20,8 +20,8 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const endpointSecret = "whsec_e73f75173a37acc7b4dc87974e716a457d4faa76e1c8966d2abb513904e245e1";
-
+const endpointSecret =
+  "whsec_e73f75173a37acc7b4dc87974e716a457d4faa76e1c8966d2abb513904e245e1";
 
 const corsOptions = {
   origin: true,
@@ -50,7 +50,7 @@ const connect = async () => {
       useUnifiedTopology: true,
     });
 
-    console.log("MongoDB database connected");
+    console.log("MongoDB database connected \u{1F604}");
   } catch (err) {
     console.log("MongoDB database connection failed");
   }

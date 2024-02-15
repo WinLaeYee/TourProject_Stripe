@@ -21,6 +21,7 @@ function ParentComponent() {
         return response.json();
       })
       .then((data) => {
+        console.log('Response Data', data)
         setBookings(data.data);
         setLoading(false);
       })
@@ -29,7 +30,7 @@ function ParentComponent() {
       });
   }, [tourName]);
 
-  console.log('tourName', tourName);
+  //console.log('tourName', tourName);
 
   return (
     <div>

@@ -8,10 +8,6 @@ import './UserBookingList.css'
 import PayButton from '../components/PayButton'
 import { formatDate } from '../utils/formatDate.js'
 
-/* function formatDate(dateString) {
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
-  return new Date(dateString).toLocaleDateString(undefined, options)
-} */
 
 const UserBookingList = ({ userId }) => {
   const { user } = useContext(AuthContext)

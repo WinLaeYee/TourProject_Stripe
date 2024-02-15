@@ -20,7 +20,7 @@ const TourDetails = () => {
   const { user } = useContext(AuthContext)
  
 
-  //fetch data from database
+ 
   const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`)
 
   //console.log('tour', tour.length)

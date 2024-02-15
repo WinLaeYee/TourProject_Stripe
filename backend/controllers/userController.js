@@ -72,10 +72,33 @@ export const deleteUser = async (req, res) => {
 };
 
 // getSingle User
-export const getSingleUser = async (req, res) => {
+/* export const getSingleUser = async (req, res) => {
   const id = req.params.id;
   try {
     const user = await User.findById(id);
+    
+    console.log(user);
+    res.status(200).json({
+      success: true,
+      message: "Successfully showed",
+      data: populateUser,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(404).json({
+      success: false,
+      message: "User Not found",
+    });
+  }
+}; */
+
+export const getSingleUser = async (req, res) => {
+  const id = req.params.id;
+  //console.log('Fetching user details for ID:', id);
+
+  try {
+    const user = await User.findById(id);
+    console.log('Fetched user details:', user);
 
     res.status(200).json({
       success: true,
@@ -83,6 +106,7 @@ export const getSingleUser = async (req, res) => {
       data: user,
     });
   } catch (err) {
+    console.error(err);
     res.status(404).json({
       success: false,
       message: "User Not found",
