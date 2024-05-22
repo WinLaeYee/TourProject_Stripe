@@ -4,8 +4,16 @@ import Tour from "../models/Tour.js";
 
 export const createTour = async (req, res) => {
   try {
-    const { title, city, address, distance, desc, price, maxGroupSize, featured } =
-      req.body;
+    const {
+      title,
+      city,
+      address,
+      distance,
+      desc,
+      price,
+      maxGroupSize,
+      featured,
+    } = req.body;
 
     const file = {
       fileName: req.file.originalname,
@@ -25,9 +33,9 @@ export const createTour = async (req, res) => {
       price,
       maxGroupSize,
       photo: file,
-      featured: featured || false
+      featured: featured || false,
     });
-    console.log('new tour:', newTour)
+    console.log("new tour:", newTour);
 
     const result = await newTour.save();
     res.status(200).json({
@@ -36,7 +44,6 @@ export const createTour = async (req, res) => {
       data: result,
     });
     console.log("this is result", result);
-   
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -47,7 +54,7 @@ export const createTour = async (req, res) => {
 
 //update tour
 export const updateTour = async (req, res) => {
-  const { title, city, address,distance, desc, price, maxGroupSize } =
+  const { title, city, address, distance, desc, price, maxGroupSize } =
     req.body;
   const id = req.params.id;
   const photo = req.file;
@@ -112,7 +119,6 @@ export const updateTour = async (req, res) => {
   }
 };
 
-
 // delete tour
 export const deleteTour = async (req, res) => {
   const id = req.params.id;
@@ -125,19 +131,18 @@ export const deleteTour = async (req, res) => {
     if (!deletedTour) {
       return res.status(404).json({
         success: false,
-        message: 'Tour not found',
+        message: "Tour not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: 'Tour deleted successfully',
-      
+      message: "Tour deleted successfully",
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: 'Failed to delete tour',
+      message: "Failed to delete tour",
     });
   }
 };
@@ -148,8 +153,8 @@ export const getSingleTour = async (req, res) => {
 
   try {
     const tour = await Tour.find({ _id: id })
-    // const tour = await Tour.findById(id);
-    .populate("reviews")
+      // const tour = await Tour.findById(id);
+      .populate("reviews");
     res.status(200).json({
       success: true,
       message: "Successfully showed",
@@ -192,7 +197,6 @@ export const getSingleTour = async (req, res) => {
     });
   }
 }; */
-
 
 export const getAllTour = async (req, res) => {
   //for pagination
@@ -283,21 +287,20 @@ export const getTourCount = async (req, res) => {
   }
 };
 
-
 // Get all tours without pagination
 export const getAllToursNoPagination = async (req, res) => {
   try {
-    const tours = await Tour.find().populate('reviews');
+    const tours = await Tour.find().populate("reviews");
     res.status(200).json({
       success: true,
       count: tours.length,
-      message: 'Successfully fetched all tours',
+      message: "Successfully fetched all tours",
       data: tours,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: 'Failed to fetch tours',
+      message: "Failed to fetch tours",
     });
   }
 };
@@ -313,5 +316,3 @@ const fileSizeFormatter = (bytes, decimal) => {
     parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + "" + sizes[index]
   );
 };
-
-
