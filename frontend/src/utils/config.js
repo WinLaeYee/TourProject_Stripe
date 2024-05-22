@@ -1,3 +1,4 @@
 
 
-export const BASE_URL = 'https://tour-project-stripe.vercel.app/home/api'
+export const BASE_URL = 'https://travel-world-taupe.vercel.app/api'
+
